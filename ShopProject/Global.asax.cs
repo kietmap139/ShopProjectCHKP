@@ -9,9 +9,9 @@ namespace ShopProject
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        protected void Application_Start()
+        protected void Application_Start() 
         {
-            AreaRegistration.RegisterAllAreas();
+            AreaRegistration.RegisterAllAreas( );
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }

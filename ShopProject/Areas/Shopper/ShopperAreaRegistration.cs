@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ShopProject.Areas.Shopper
 {
@@ -16,9 +17,8 @@ namespace ShopProject.Areas.Shopper
         {
             context.MapRoute(
                 "Shopper_default",
-                "a/{controller}/{action}/{id}",
-                /*"Administrator/{controller}/{action}/{id}",*/
-                new { action = "Index", id = UrlParameter.Optional }
+                "Administrato/{controller}/{action}/{id}",
+                new {controller ="Home",action = "Index", id = UrlParameter.Optional }
             );
         }
     }
