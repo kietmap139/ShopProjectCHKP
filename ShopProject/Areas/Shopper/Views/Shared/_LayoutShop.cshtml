@@ -8,32 +8,25 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <script src="~/Areas/Shopper/Content/js/custom.js" ></script>
-    <!-- Bootstrap Core CSS -->
+    <script src="~/Areas/Shopper/Content/js/custom.js"></script>
     <link href="~/Areas/Shopper/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- MetisMenu CSS -->
     <link href="~/Areas/Shopper/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="~/Areas/Shopper/Content/dist/css/sb-admin-2.css" rel="stylesheet">
-    <!-- Custom Fonts -->
     <link href="~/Areas/Shopper/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="~/Areas/Shopper/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Areas/Shopper/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script type="application/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
         function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- //for-mobile-apps -->
     <link href="~/Areas/Shopper/Content/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <!-- Custom Theme files -->
     <link href="~/Areas/Shopper/Content/css/style.css" rel='stylesheet' type='text/css' />
-    <!-- js -->
-    <script src="~/Areas/Shopper/Content/js/jquery-1.11.1.min.js"></script>
-    <!-- //js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- start-smoth-scrolling -->
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="~/Areas/Shopper/Content/js/move-top.js"></script>
     <script type="text/javascript" src="~/Areas/Shopper/Content/js/easing.js"></script>
-    <!--Script custom-->
+    <link href="~/Areas/Shopper/vendor/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!--- start-rate---->
+    <script src="~/Areas/Shopper/Content/js/jstarbox.js"></script>
+    <link rel="stylesheet" href="~/Areas/Shopper/Content/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
@@ -41,7 +34,7 @@
                 $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
             });
         });
-        
+
         $(document).ready(function () {
             $(".switcher-btn").click(function () {
                 $(".switcher-wrapper").toggleClass("switcher-toggled")
@@ -49,41 +42,47 @@
             $("#page").click(function () {
                 $(".switcher-wrapper").removeClass("switcher-toggled")
             })
-        });
-        @*$("#style-6").onclick = function (e) {
-            if (e.target != '.switcher-wrapper') {
-                $(".switcher-wrapper").removeClass("switcher-toggled")
-            }
-                
-        };*@
-        $(document).ready(function () {
-            $('.btn-success').on("click", function () {
+            $('.btn-success').click(function () {
                 var product_id = $(this).val();
-            $.ajax({
+                $.ajax({
                 url: '@Url.Action("ThemVaoGio", "GioHang")?SamPhamID='+product_id,
                 data: { SanPhamID : product_id },
                 success: function (data) {
-                    $('#style-6').load(location.href );
+                    $('body').load(location.href);
                 },
                 error: function (data) {
 
                     alert('Sản phẫm lỗi');
 
                 }
-            });
-                
+                });
+
+            })
+            $('.btn-sm').click(function () {
+                var product_id_delete = $(this).val();
+                $.ajax({
+                url: '@Url.Action("XoaKhoiGio", "GioHang")?SamPhamID='+product_id_delete,
+                data: { SanPhamID: product_id_delete },
+                success: function (data) {
+                    $('body').load(location.href);
+                    $(".switcher-wrapper").toggleClass("switcher-toggled")
+                },
+                error: function (data) {
+
+                    alert('Sản phẫm lỗi');
+
+                }
+                });
+
            })
+        });
+        $(document).ready(function () {
+
 
         });
 
     </script>
-    <!-- start-smoth-scrolling -->
-    <link href="~/Areas/Shopper/Content/css/font-awesome.css" rel="stylesheet">
-    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
-    <!--- start-rate---->
-    <script src="~/Areas/Shopper/Content/js/jstarbox.js"></script>
-    <link rel="stylesheet" href="~/Areas/Shopper/Content/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
+
     <!---//End-rate---->
     <style>
         #style-6::-webkit-scrollbar-track {
@@ -102,12 +101,29 @@
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #555;
         }
+
+        #style-7::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        #style-7::-webkit-scrollbar {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
+
+        #style-7::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #e02e2e70;
+        }
     </style>
 </head>
 <body id="style-6">
     <div id="page">
         <div class="header">
-            <div class="container">
+            <div class="container" style="margin-bottom: 18px;">
                 <div class="logo">
                     <h1><a href="@Url.Action("Index", "Home")"><b>C<br>H<br>K<br>P</b>Shop<span>The Best Fashion</span></a></h1>
                 </div>
@@ -121,7 +137,7 @@
                     <ul class="social-top">
                     </ul>
                 </div>
-                <div class="nav-top">
+                <div class="nav-top" style=" display: flex;">
                     <nav class="navbar navbar-default">
                         <div class="navbar-header nav_2">
                             <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
@@ -141,21 +157,11 @@
                                         <li class="dropdown ">
                                             <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>@itemCate.cateName<b class="caret"></b></span></a>
                                             <ul class="dropdown-menu">
-                                                @*<a class="col-sm-12">*@
-                                                @*<ul class="multi-column-dropdown">*@
+     
                                                 @foreach (var itemPt in db.ProductTypes.Where(c => c.cateID == itemCate.cateID))
                                                 {
                                                     <li><a href="@Url.Action("ProductsByProType", "Products", new { id = itemPt.typeID, page = 1 })"><i class="fa fa-angle-right" aria-hidden="true"></i>@itemPt.typeName</a></li>
                                                 }
-                                                @*</ul>*@
-                                                @*</a>*@
-                                                @*<div class="col-sm-12">*@
-                                                @*<ul class="multi-column-dropdown">*@
-                                                <li>
-                                                    <img src="@itemCate.catePhoto" width="100" height="50" />
-                                                </li>
-                                                @*</ul>*@
-                                                @*</div>*@
                                             </ul>
                                         </li>
                                     }
@@ -163,33 +169,24 @@
                                 <li class="dropdown ">
                                     <a href="javascrip::void()" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Hãng sản xuất<b class="caret"></b></span></a>
                                     <ul class="dropdown-menu">
-                                        @*<div class="col-sm-12">*@
-                                        @*<ul class="multi-column-dropdown">*@
+  
                                         @foreach (var itemPdc in db.Producers)
                                         {
                                             <li><a href="@Url.Action("ProductsByPdc", "Products", new { id = itemPdc.pdcID, page = 1 })"><img src="@itemPdc.pdcPhoto" width="20" height="20" /> @itemPdc.pdcName</a></li>
                                         }
-                                        @*</ul>*@
-                                        @*</div>*@
                                     </ul>
                                 </li>
                                 <li><a href="#" class="hyper "><span>Phản hồi</span></a></li>
                             </ul>
                         </div>
                     </nav>
-                    <div class="cart">
-                        @{
-                            List<ShopProject.Areas.Shopper.Models.CartItem> gio = Session["giohang"] as List<ShopProject.Areas.Shopper.Models.CartItem>;
-                            if (gio == null || gio.Count == 0)
-                            {
-                                <a href="@Url.Action("Index","GioHang")"><span class="fa fa-shopping-cart my-cart-icon" style="color:black!important"><span class="badge badge-notify my-cart-badge">0</span></span></a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("Index","GioHang")"><span class="fa fa-shopping-cart my-cart-icon" style="color:black!important"><span class="badge badge-notify my-cart-badge">@gio.Count</span></span></a>
-                            }
+                    <div class="search-form">
+                        @using (Ajax.BeginForm("SearchByName", "Products", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
+                        {
+                            <input type="text" style="" placeholder="Tìm kiếm..." name="name">
+                            <button type="submit" class="btn btn-default" style=" height: 42.5px;"><i class=" fa fa-search"></i></button>
                         }
-                    </div>
+                    </div>    
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -203,10 +200,7 @@
 
 
 
-
-
-
-
+        <!--footer-->
         <div class="footer">
             <div class="container">
                 <div class="col-md-3 footer-grid">
@@ -259,9 +253,9 @@
     </div>
     <!-- //footer-->
     <!--clidebar-->
+    @{List<ShopProject.Areas.Shopper.Models.CartItem> gio = Session["giohang"] as List<ShopProject.Areas.Shopper.Models.CartItem>; }
     <div class="switcher-wrapper" id="slidebar">
         <div class="switcher-btn" id="shopbadge">
-            @*<i class="fa fa-shopping-cart" style="color:black" aria-hidden="true"></i>*@
             @{
 
                 if (gio == null || gio.Count == 0)
@@ -277,13 +271,50 @@
                     </a>
                 }
             }
-
-
         </div>
+
         <div class="switcher-body">
             <div class="side-shopping-banner">~ GIỎ HÀNG ~</div>
+            <div class="side-shopping-body" >
+                @if (gio == null || gio.Count == 0)
+                {
 
-            <div class="side-shopping-buy"><a href="@Url.Action("Index","GioHang")"> Thanh toán</a></div>
+                    <p class="text-info text-center" style="font-size:25px;">
+                        Giỏ hàng của bạn trống!
+                    </p>
+                }
+                else
+                {
+                    int total = 0;
+                    int i = 0;
+                    <table class="table-responsive-slidebar">
+                        <thead>
+                            <tr style=" background: #d04d4d;">
+                                <th class="col" style="width: 27.6%; text-align: center;">Hình</th>
+                                <th class="col" style="width: 32%; text-align: center;">Tên sản phẩm</th>
+                                <th class="col" style="width: 21%; text-align: center;">Đơn giá</th>
+                                <th class="col" style="width: 17%; text-align: center;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="style-7">
+                            @foreach (var item in gio)
+                            {
+                                <tr style=" display: flex; position: relative; margin-top: 1px; border-bottom: 1px solid red;">
+                                    <td class="col" style="width: 30%; height: fit-content; margin-top: -1px; "><img src="@item.Hinh" width="80" height="80" /> </td>
+                                    <td class="col" style="width:33%;"><a target="_blank" href="@Url.Action("ProductDetail", "Products", new { id = item.SanPhamID })" style="font-size: medium; margin: auto;"> @item.TenSanPham </a> </td>
+                                    <td class="col" style="width: 21%;"><a style=" margin: auto;"> @Int32.Parse(item.DonGia).ToString("#,##0") VNĐ</a> </td>
+                                    <td class="col" style="width: 17%;"> <button value="@item.SanPhamID" @*href="@Url.Action("XoaKhoiGio", new { SanPhamID = item.SanPhamID })"*@ class="btn btn-danger btn-sm">Xóa</button> </td>
+                                </tr>
+                                i++;
+                                total += @item.ThanhTien;
+                            }
+                        </tbody>
+                    </table>
+                }
+
+            </div> 
+            <div class="side-shopping-buy"><a href="@Url.Action("Index", "GioHang")"> Thanh toán</a></div>
+
         </div>
     </div>
 
