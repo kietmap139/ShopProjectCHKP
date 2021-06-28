@@ -83,7 +83,7 @@ namespace ShopProject.Areas.Shopper.Controllers
             {
                 giohang.Remove(itemXoa);
             }
-            return RedirectToAction("Index");
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }
