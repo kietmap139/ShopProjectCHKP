@@ -1,9 +1,81 @@
-/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
+.switcher-wrapper {
+    width: 280px;
+    height: 100%;
+    position: fixed;
+    right: -280px;
+    top: 0;
+    bottom: 0;
+    z-index: 1030;
+    background: #fbf9f9;
+    border-left: 0 solid #d2d2d2;
+    box-shadow: -5px 0rem 2rem 8px rgb(0 0 0 / 13%);
+    transition: all .2s ease-out;
+}
+/*.switcher-wrapper .switcher-toggled{
+	right: 0
+}*/
+.switcher-toggled {
+    right: 0
+}
+
+.switcher-btn {
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 24px;
+    background: #F2F3F3;
+    box-shadow: -5px 3px 5.6px 1px rgb(0 0 0 / 28%);
+    color: #fff;
+    text-align: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    top: 40%;
+    right: 100%;
+    cursor: pointer
+}
+.switcher-body {
+    padding: 2px;
+    position: relative;
+    display: flex;
+}
+.side-shopping-banner {
+    width: 280px;
+    height: 50px;
+    margin-top: 2px;
+    background-color: #ccf8ff;
+    text-align: center;
+    align-content: center;
+    font-size: 39px;
+    font-style: oblique;
+    font-family: emoji;
+}
+.side-shopping-buy {
+    width: 280px;
+    height: 50px;
+    margin-top: 2px;
+    background-color: #ee4d2d;
+    position: fixed;
+    bottom: 0;
+    margin-left: -1px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+}
+    .side-shopping-buy a {
+        text-transform: uppercase;
+        color: white;
+        text-decoration: none;
+        padding: 13px;
+        font-size: 21px;
+    }
+        .side-shopping-buy a :hover {
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 24px;
+        }
 body {
     margin: 0;
     padding: 0;
@@ -2590,7 +2662,7 @@ span.last {
     height: 32px;
     border: none;
     text-indent: 100%;
-    background: url("../images/arr.png") no-repeat 0px 0px;
+    background-image: url('../../../../Image/arr.png');
 }
 /*--responsive--*/
 @media(max-width:1440px) {
