@@ -49,6 +49,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net45\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -229,6 +232,7 @@
     <Content Include="Areas\Shopper\Content\css\style.css" />
     <Content Include="Areas\Shopper\Content\js\bootstrap.js" />
     <Content Include="Areas\Shopper\Content\js\cloud-zoom.1.0.2.min.js" />
+    <Content Include="Areas\Shopper\Content\js\custom.js" />
     <Content Include="Areas\Shopper\Content\js\easing.js" />
     <Content Include="Areas\Shopper\Content\js\easyResponsiveTabs.js" />
     <Content Include="Areas\Shopper\Content\js\jquery-1.11.1.min.js" />
@@ -630,7 +634,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62174</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61765/</IISUrl>
+          <IISUrl>http://localhost:3000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

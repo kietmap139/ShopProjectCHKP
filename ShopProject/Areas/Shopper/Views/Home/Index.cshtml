@@ -68,7 +68,7 @@
                             if (qtt > 4)
                             {
                                 break;
-                            }
+                            }                           
                             int newPrice = Int32.Parse(item.proPrice) - ((Int32.Parse(item.proPrice) * item.proDiscount.Value) / 100);
                             <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
                                 <div class="col-m">
@@ -96,7 +96,18 @@
                                         </div>
                                         (Size: @item.proSize)
                                         <div class="mid-2">
-                                            <p><label>@proDAO.formatNumber(item.proPrice) VNĐ</label><em class="item_price">@proDAO.formatNumber(newPrice.ToString()) VNĐ</em></p>
+                                            <p>
+                                                @if (Int32.Parse(item.proPrice) > newPrice)
+
+                                                {
+                                                    <label>@proDAO.formatNumber(item.proPrice) VNĐ</label>
+                                                }
+                                                else
+                                                {
+
+                                                }
+                                                <em class="item_price">@proDAO.formatNumber(newPrice.ToString()) VNĐ</em>
+                                            </p>
                                             <div class="clearfix"></div>
                                             <div class="block">
                                                 @if (db.Rates.Find(item.proID) != null)
@@ -123,8 +134,8 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div class="add">
-                                            <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </a>
+                                        <div class="add" >
+                                            <button class="btn btn-success" value="@item.proID" @*href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"*@ > <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
                                         </div>
                                     </div>
                                 </div>
@@ -214,7 +225,8 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="add">
-                                            <a class="btn btn-success" href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"> <span class="glyphicon glyphicon-shopping-cart"></span> Thêm vào giỏ </a>
+                                            <button class="btn btn-success" value="@item.proID" @*href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"*@> <span class="glyphicon glyphicon-shopping-cart">
+                                                            </span>  Thêm vào giỏ </button>
                                         </div>
                                     </div>
                                 </div>
@@ -271,12 +283,12 @@
                         <div class="toasang">
                             <img src="~/Image/icon_card.png" />
                         </div>
-                        <p><strong class="bold">Chế độ ưu đãi thành viên VIP:</strong></p>
-                        <ul style="font-size:large;">
-                            <li class="fa fa-check-circle">5% cho thành viên Bạc</li>
-                            <li class="fa fa-check-circle">10% cho thành viên Vàng</li>
-                            <li class="fa fa-check-circle">15% cho thành viên Kim cương</li>
-                        </ul>
+                            @*<p><strong class="bold">Chế độ ưu đãi thành viên VIP:</strong></p>
+                            <ul style="font-size:large;">
+                                <li class="fa fa-check-circle">5% cho thành viên Bạc</li>
+                                <li class="fa fa-check-circle">10% cho thành viên Vàng</li>
+                                <li class="fa fa-check-circle">15% cho thành viên Kim cương</li>
+                            </ul>*@
                     </div>
                 </div>
             </div>
