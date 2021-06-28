@@ -24,6 +24,12 @@
     <link href="~/Areas/Shopper/vendor/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!--alertify-->
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <script src="~/Scripts/alertify.min.js"></script>
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/semantic.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/bootstrap.min.css" rel="stylesheet" />
     <!--- start-rate---->
     <script src="~/Areas/Shopper/Content/js/jstarbox.js"></script>
     <link rel="stylesheet" href="~/Areas/Shopper/Content/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
@@ -47,8 +53,11 @@
                 $.ajax({
                 url: '@Url.Action("ThemVaoGio", "GioHang")?SamPhamID='+product_id,
                 data: { SanPhamID : product_id },
-                success: function (data) {
-                    $('body').load(location.href);
+                    success: function (response) {
+                        $('body').load(location.href);
+                    @*alertify.set('notifier', 'position', 'top-right');
+                    alertify.success('Current position : ' + alertify.get('notifier', 'position'));*@
+
                 },
                 error: function (data) {
 
@@ -58,7 +67,7 @@
                 });
 
             })
-            $('.btn-sm').click(function () {
+            @*$('.btn-sm').click(function () {
                 var product_id_delete = $(this).val();
                 $.ajax({
                 url: '@Url.Action("XoaKhoiGio", "GioHang")?SamPhamID='+product_id_delete,
@@ -66,6 +75,23 @@
                 success: function (data) {
                     $('body').load(location.href);
                     $(".switcher-wrapper").toggleClass("switcher-toggled")
+                },
+                error: function (data) {
+
+                    alert('Sản phẫm lỗi');
+
+                }
+                });
+
+           })*@
+            $('.btn-sm').click(function () {
+                var product_id_delete = $(this).val();
+                $.ajax({
+                url: '@Url.Action("XoaKhoiGio", "GioHang")?SamPhamID='+product_id_delete,
+                data: { SanPhamID: product_id_delete },
+                    success: function (data) {
+                     $('body').load(location.href);
+                     $(".switcher-wrapper").toggleClass("switcher-toggled")
                 },
                 error: function (data) {
 
