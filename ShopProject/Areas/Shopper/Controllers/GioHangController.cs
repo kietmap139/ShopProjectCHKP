@@ -36,6 +36,7 @@ namespace ShopProject.Areas.Shopper.Controllers
                     SanPhamID = SanPhamID,
                     TenSanPham = sp.proName,
                     SoLuong = 1,
+                    /*Size = 38,*/
                     Hinh = sp.proPhoto,
                     DonGia = (Int32.Parse(sp.proPrice) - (Int32.Parse(sp.proPrice) * sp.proDiscount)/100).ToString()
 
@@ -54,7 +55,7 @@ namespace ShopProject.Areas.Shopper.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
         //Sửa số lượng
-        public ActionResult SuaSoLuong(string SanPhamID, int soluongmoi)
+        public ActionResult SuaSoLuong(string SanPhamID, int soluongmoi, int sizemoi)
         {
             // tìm carditem muon sua
             List<CartItem> giohang = Session["giohang"] as List<CartItem>;
@@ -69,6 +70,7 @@ namespace ShopProject.Areas.Shopper.Controllers
                 {
                     @ViewBag.GioError = "";
                     itemSua.SoLuong = soluongmoi;
+                    /*itemSua.Size = sizemoi;*/
                 }
             }
             return RedirectToAction("Index");

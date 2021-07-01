@@ -69,7 +69,9 @@ namespace ShopProject.Areas.Shopper.Controllers
                 newOrdts.orderID = newOrder.orderID;
                 newOrdts.proID = giohang.ElementAtOrDefault(i).SanPhamID;
                 newOrdts.ordtsQuantity = giohang.ElementAtOrDefault(i).SoLuong;
+                /*newOrdts.ordtsSize = giohang.ElementAtOrDefault(i).Size;*/
                 newOrdts.ordtsThanhTien = giohang.ElementAtOrDefault(i).ThanhTien.ToString();
+
                 db.OrderDetails.Add(newOrdts);
                 db.SaveChanges();
             }

@@ -48,16 +48,13 @@
             $("#page").click(function () {
                 $(".switcher-wrapper").removeClass("switcher-toggled")
             })
-            $('.btn-success').click(function () {
+            $('.btn-themvaogio').click(function () {
                 var product_id = $(this).val();
                 $.ajax({
                 url: '@Url.Action("ThemVaoGio", "GioHang")?SamPhamID='+product_id,
                 data: { SanPhamID : product_id },
                     success: function (response) {
                         $('body').load(location.href);
-                    @*alertify.set('notifier', 'position', 'top-right');
-                    alertify.success('Current position : ' + alertify.get('notifier', 'position'));*@
-
                 },
                 error: function (data) {
 
@@ -151,7 +148,7 @@
         <div class="header">
             <div class="container" style="margin-bottom: 18px;">
                 <div class="logo">
-                    <h1><a href="@Url.Action("Index", "Home")"><b>C<br>H<br>K<br>P</b>Shop<span>The Best Fashion</span></a></h1>
+                    <h1><a href="@Url.Action("Index", "Home")"><img src="~/Image/logoshop.png" /></a></h1>
                 </div>
                 <div class="head-t">
                     <ul class="card">
@@ -209,7 +206,7 @@
                     <div class="search-form">
                         @using (Ajax.BeginForm("SearchByName", "Products", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
                         {
-                            <input type="text" style="" placeholder="Tìm kiếm..." name="name">
+                            <input type="text" style="" placeholder="Tìm kiếm..." tabindex="1" name="name">
                             <button type="submit" class="btn btn-default" style=" height: 42.5px;"><i class=" fa fa-search"></i></button>
                         }
                     </div>    
