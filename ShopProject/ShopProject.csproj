@@ -511,10 +511,12 @@
     <Content Include="Image\img %288%29.jpg" />
     <Content Include="Image\img %289%29.jpg" />
     <Content Include="Image\khuyen-mai.jpg" />
+    <Content Include="Image\logoshop.png" />
     <Content Include="Image\slide-1-trang-chu-slide-1.jpg" />
     <Content Include="Image\slide-2-trang-chu-slide-2.jpg" />
     <Content Include="Image\slide-4-trang-chu-slide-4.jpg" />
     <Content Include="Image\star.png" />
+    <Content Include="Image\up-arrow-icon.png" />
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap.js" />

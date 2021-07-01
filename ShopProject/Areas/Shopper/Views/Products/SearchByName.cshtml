@@ -9,19 +9,6 @@
     ShopProject.Repository.ProductDAO proDAO = new ShopProject.Repository.ProductDAO();
     ShopProject.Areas.Shopper.Models.UserContext db = new ShopProject.Areas.Shopper.Models.UserContext();
 }
-<div data-vide-bg="video/video">
-    <div class="container">
-        <div class="banner-info">
-            <div class="search-form">
-                @using (Ajax.BeginForm("SearchByName", "Products", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
-                {
-                    <input type="text" style="background-color:rgba(0, 0, 255, 0.50);" placeholder="Tìm kiếm..." name="name">
-                    <button type="submit" class="btn btn-default" style="background-color:rgba(0, 0, 255, 0.50);"><i class=" fa fa-search"></i></button>
-                }
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>window.jQuery || document.write('<script src="~/Areas/Shopper/Content/js/jquery-1.11.1.min.js"><\/script>')</script>
 <script src="~/Areas/Shopper/Content/js/jquery.vide.min.js"></script>
@@ -47,11 +34,10 @@
                         <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
                             <div class="col-m">
                                 <a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })" class="offer-img">
-                                    <img src="@item.proPhoto" width="150" height="150" alt="@item.proPhoto">
+                                    <img src="@item.proPhoto" alt="@item.proPhoto">
                                     @if (Int32.Parse(item.proPrice) > newPrice)
                                     {
-                                        <div class="offer"><p><span>Giảm @item.proDiscount %</span></p></div>
-                                    }
+                                        <div class="offer"><span>-@item.proDiscount %</span></div>}
                                     else
                                     {
 
@@ -70,7 +56,18 @@
                                     </div>
                                     (Size: @item.proSize)
                                     <div class="mid-2">
-                                        <p><label>@proDAO.formatNumber(item.proPrice) VNĐ</label><em class="item_price">@proDAO.formatNumber(newPrice.ToString()) VNĐ</em></p>
+                                        <p>
+                                            @if (Int32.Parse(item.proPrice) > newPrice)
+
+                                            {
+                                                <label>@proDAO.formatNumber(item.proPrice) VNĐ</label>
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                            <em class="item_price">@proDAO.formatNumber(newPrice.ToString()) VNĐ</em>
+                                        </p>
                                         <div class="clearfix"></div>
                                         <div class="block">
                                             @if (db.Rates.Find(item.proID) != null)
@@ -93,7 +90,7 @@
                                             }
                                         </div>
                                         <div>
-                                            <a href="#"><img src="@item.Producer.pdcPhoto" width="20" height="20" /> @item.Producer.pdcName</a>
+                                            <a href="#"><img src="@item.Producer.pdcPhoto" width="59" height="25" /></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
