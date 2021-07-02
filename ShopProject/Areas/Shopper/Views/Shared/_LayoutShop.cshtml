@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <meta name="description" content="">
     <meta name="author" content="">
@@ -53,7 +53,7 @@
                 $.ajax({
                 url: '@Url.Action("ThemVaoGio", "GioHang")?SamPhamID='+product_id,
                 data: { SanPhamID : product_id },
-                    success: function (response) {
+                    success: function (data) {
                         $('body').load(location.href);
                 },
                 error: function (data) {
@@ -81,7 +81,7 @@
                 });
 
            })*@
-            $('.btn-sm').click(function () {
+            $('.btn-xoakhoigio').click(function () {
                 var product_id_delete = $(this).val();
                 $.ajax({
                 url: '@Url.Action("XoaKhoiGio", "GioHang")?SamPhamID='+product_id_delete,
@@ -148,7 +148,7 @@
         <div class="header">
             <div class="container" style="margin-bottom: 18px;">
                 <div class="logo">
-                    <h1><a href="@Url.Action("Index", "Home")"><img src="~/Image/logoshop.png" /></a></h1>
+                    <h1><a href="/"><img src="~/Image/logoshop.png" /></a></h1>
                 </div>
                 <div class="head-t">
                     <ul class="card">
@@ -172,31 +172,26 @@
                         </div>
                         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                             <ul class="nav navbar-nav " id="menu11">
-                                <li class=" "><a href="@Url.Action("Index", "Home")" class="hyper "><span>Trang chủ</span></a></li>
-                                @{
-                                    ShopProject.Areas.Shopper.Models.UserContext db = new ShopProject.Areas.Shopper.Models.UserContext();
-                                    foreach (var itemCate in db.Categories)
-                                    {
-                                        <li class="dropdown ">
-                                            <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>@itemCate.cateName<b class="caret"></b></span></a>
-                                            <ul class="dropdown-menu">
-     
-                                                @foreach (var itemPt in db.ProductTypes.Where(c => c.cateID == itemCate.cateID))
+                                <li class=" "><a href="/" class="hyper "><span>Trang chủ</span></a></li>
+                                @{ ShopProject.Areas.Shopper.Models.UserContext db = new ShopProject.Areas.Shopper.Models.UserContext();
+                                                foreach (var itemCate in db.Categories)
                                                 {
-                                                    <li><a href="@Url.Action("ProductsByProType", "Products", new { id = itemPt.typeID, page = 1 })"><i class="fa fa-angle-right" aria-hidden="true"></i>@itemPt.typeName</a></li>
-                                                }
-                                            </ul>
-                                        </li>
-                                    }
-                                }
+                                    <li class="dropdown ">
+                                        <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>@itemCate.cateName<b class="caret"></b></span></a>
+                                        <ul class="dropdown-menu">
+
+                                            @foreach (var itemPt in db.ProductTypes.Where(c => c.cateID == itemCate.cateID))
+                                            {
+                            <li><a href="@Url.Action("ProductsByProType", "Products", new { id = itemPt.typeID, page = 1 })"><i class="fa fa-angle-right" aria-hidden="true"></i>@itemPt.typeName</a></li>}
+                                        </ul>
+                                    </li> } }
                                 <li class="dropdown ">
                                     <a href="javascrip::void()" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Hãng sản xuất<b class="caret"></b></span></a>
                                     <ul class="dropdown-menu">
-  
+
                                         @foreach (var itemPdc in db.Producers)
                                         {
-                                            <li><a href="@Url.Action("ProductsByPdc", "Products", new { id = itemPdc.pdcID, page = 1 })"><img src="@itemPdc.pdcPhoto" width="20" height="20" /> @itemPdc.pdcName</a></li>
-                                        }
+                            <li><a href="@Url.Action("ProductsByPdc", "Products", new { id = itemPdc.pdcID, page = 1 })"><img src="@itemPdc.pdcPhoto" width="20" height="20" /> @itemPdc.pdcName</a></li>}
                                     </ul>
                                 </li>
                                 <li><a href="#" class="hyper "><span>Phản hồi</span></a></li>
@@ -206,10 +201,9 @@
                     <div class="search-form">
                         @using (Ajax.BeginForm("SearchByName", "Products", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
                         {
-                            <input type="text" style="" placeholder="Tìm kiếm..." tabindex="1" name="name">
-                            <button type="submit" class="btn btn-default" style=" height: 42.5px;"><i class=" fa fa-search"></i></button>
-                        }
-                    </div>    
+            <input type="text" style="" placeholder="Tìm kiếm..." tabindex="1" name="name">
+                            <button type="submit" class="btn btn-default" style=" height: 42.5px;"><i class=" fa fa-search"></i></button>}
+                    </div>
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -235,19 +229,45 @@
                 <div class="col-md-3 footer-grid ">
                     <h3>Menu</h3>
                     <ul>
-                        <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                        <li><a href="/">Trang chủ</a></li>
                         @foreach (var itemCate in db.Categories)
                         {
-                            <li><a href="#">@itemCate.cateName</a></li>
-                        }
+            <li><a href="#">@itemCate.cateName</a></li>
+}
                     </ul>
                 </div>
                 <div class="col-md-3 footer-grid">
-                    <h3>Tài khoản</h3>
-                    <ul>
-                        <li><a href="@Url.Action("Index", "Login")">Login</a></li>
-                        <li><a href="@Url.Action("DK", "Login")">Đăng ký</a></li>
-                    </ul>
+                    <h3>Phương thức thanh toán &amp; giao hàng</h3>
+                    <div class="content">
+                        <p><strong class="bold">Miễn phí vận chuyển cho đơn hàng trên 1.000.000VNĐ</strong></p>
+                        <ul style="font-size:large;">
+                            <li class="fa fa-check-circle">
+
+                                Giao hàng và thu tiền tận nơi
+
+                            </li>
+                            <li class="fa fa-check-circle">
+                                Chuyển khoản và giao hàng
+                            </li>
+                            <li class="fa fa-check-circle">
+                                Mua hàng tại shop
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 footer-grid">
+                    <h3>Hỗ trợ 24/7</h3>
+                    <div class="content">
+                        <p><strong>Gọi ngay cho chúng tôi khi bạn có thắc mắc</strong></p>
+                        <ul style="font-size:xx-large;">
+                            <li class="fa fa-check-circle">
+                                <strong class="big npl">0123456789 </strong>
+                            </li>
+                            <li class="fa fa-check-circle">
+                                <strong class="big npl">0123456789 </strong>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="footer-bottom">
@@ -279,63 +299,55 @@
     @{List<ShopProject.Areas.Shopper.Models.CartItem> gio = Session["giohang"] as List<ShopProject.Areas.Shopper.Models.CartItem>; }
     <div class="switcher-wrapper" id="slidebar">
         <div class="switcher-btn" id="shopbadge">
-            @{
-
-                if (gio == null || gio.Count == 0)
-                {
-                    <a>
-                        <span class="fa fa-shopping-cart my-cart-icon" style=" margin-left: 4px;color:black!important"><span class="badge badge-notify my-cart-badge" style="background-color: #1414148c">0</span></span>
-                    </a>
-                }
-                else
-                {
-                    <a>
-                        <span class="fa fa-shopping-cart my-cart-icon" style=" margin-left: 4px;color:black!important"><span class="badge badge-notify my-cart-badge" style="background-color: #1414148c">@gio.Count</span></span>
-                    </a>
-                }
-            }
+            @{ if (gio == null || gio.Count == 0)
+                            {
+                <a>
+                    <span class="fa fa-shopping-cart my-cart-icon" style=" margin-left: 4px;color:black!important"><span class="badge badge-notify my-cart-badge" style="background-color: #1414148c">0</span></span>
+                </a> }
+                            else
+                            {
+                <a>
+                    <span class="fa fa-shopping-cart my-cart-icon" style=" margin-left: 4px;color:black!important"><span class="badge badge-notify my-cart-badge" style="background-color: #1414148c">@gio.Count</span></span>
+                </a> } }
         </div>
 
         <div class="switcher-body">
             <div class="side-shopping-banner">~ GIỎ HÀNG ~</div>
-            <div class="side-shopping-body" >
+            <div class="side-shopping-body">
                 @if (gio == null || gio.Count == 0)
                 {
 
-                    <p class="text-info text-center" style="font-size:25px;">
-                        Giỏ hàng của bạn trống!
-                    </p>
-                }
+    <p class="text-info text-center" style="font-size:25px;">
+        Giỏ hàng của bạn trống!
+    </p> }
                 else
                 {
                     int total = 0;
                     int i = 0;
-                    <table class="table-responsive-slidebar">
-                        <thead>
-                            <tr style=" background: #d04d4d;">
-                                <th class="col" style="width: 27.6%; text-align: center;">Hình</th>
-                                <th class="col" style="width: 32%; text-align: center;">Tên sản phẩm</th>
-                                <th class="col" style="width: 21%; text-align: center;">Đơn giá</th>
-                                <th class="col" style="width: 17%; text-align: center;"></th>
-                            </tr>
-                        </thead>
-                        <tbody id="style-7">
-                            @foreach (var item in gio)
-                            {
-                                <tr style=" display: flex; position: relative; margin-top: 1px; border-bottom: 1px solid red;">
-                                    <td class="col" style="width: 30%; height: fit-content; margin-top: -1px; "><img src="@item.Hinh" width="80" height="80" /> </td>
-                                    <td class="col" style="width:33%;"><a target="_blank" href="@Url.Action("ProductDetail", "Products", new { id = item.SanPhamID })" style="font-size: medium; margin: auto;"> @item.TenSanPham </a> </td>
-                                    <td class="col" style="width: 21%;"><a style=" margin: auto;"> @Int32.Parse(item.DonGia).ToString("#,##0") VNĐ</a> </td>
-                                    <td class="col" style="width: 17%;"> <button value="@item.SanPhamID" @*href="@Url.Action("XoaKhoiGio", new { SanPhamID = item.SanPhamID })"*@ class="btn btn-danger btn-sm">Xóa</button> </td>
-                                </tr>
-                                i++;
-                                total += @item.ThanhTien;
-                            }
-                        </tbody>
-                    </table>
+    <table class="table-responsive-slidebar">
+        <thead>
+            <tr style=" background: #d04d4d;">
+                <th class="col" style="width: 27.6%; text-align: center;">Hình</th>
+                <th class="col" style="width: 32%; text-align: center;">Tên sản phẩm</th>
+                <th class="col" style="width: 21%; text-align: center;">Đơn giá</th>
+                <th class="col" style="width: 17%; text-align: center;"></th>
+            </tr>
+        </thead>
+        <tbody id="style-7">
+            @foreach (var item in gio)
+            {
+<tr style=" display: flex; position: relative; margin-top: 1px; border-bottom: 1px solid red;">
+    <td class="col" style="width: 30%; height: fit-content; margin-top: -1px; "><img src="@item.Hinh" width="80" height="80" /> </td>
+    <td class="col" style="width:33%;"><a target="_blank" href="@Url.Action("ProductDetail", "Products", new { id = item.SanPhamID })" style="font-size: medium; margin: auto;"> @item.TenSanPham </a> </td>
+    <td class="col" style="width: 21%;"><a style=" margin: auto;"> @Int32.Parse(item.DonGia).ToString("#,##0") VNĐ</a> </td>
+    <td class="col" style="width: 17%;"> <button value="@item.SanPhamID" @*href="@Url.Action("XoaKhoiGio", new { SanPhamID = item.SanPhamID })"*@ class="btn btn-danger btn-sm btn-xoakhoigio">Xóa</button> </td>
+</tr>i++;
+                    total += @item.ThanhTien;
                 }
+        </tbody>
+    </table>}
 
-            </div> 
+            </div>
             <div class="side-shopping-buy"><a href="@Url.Action("Index", "GioHang")"> Thanh toán</a></div>
 
         </div>
@@ -355,14 +367,12 @@
             */
             $().UItoTop({ easingType: 'easeOutQuart' });
         });
-
+            function alertsize() {
+                alert("Hãy kiểm tra kích cỡ kích cỡ");
+        }
     </script>
-    <a href="#" id="toTop" style="display: block;" @*class="bx bxs-up-arrow-alt"*@><i class='bx bxs-up-arrow-alt'></i></a>
-    <!-- //smooth scrolling -->
     <script src="~/Areas/Shopper/Content/js/bootstrap.js"></script>
-    <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
-    <!-- switchs theme-->
-    <!-- for bootstrap working -->
+    <a href="#" id="toTop" style="display: block;"><i class='bx bxs-up-arrow-alt'></i></a>
+    <!-- //smooth scrolling -->
 </body>
 </html>
-@RenderSection("scripts", required: false)

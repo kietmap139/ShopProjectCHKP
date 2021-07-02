@@ -18,7 +18,7 @@ namespace ShopProject.Areas.Shopper
             context.MapRoute(
                 "Shopper_default",
                 "Home/{controller}/{action}/{id}",
-                new {controller ="Home",action = "Index", id = UrlParameter.Optional }
+                new {controller="Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

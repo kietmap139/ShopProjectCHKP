@@ -85,6 +85,7 @@
                                                 <th>Hình</th>
                                                 <th>Sản phẩm</th>
                                                 <th>SL</th>
+                                                <th>Size</th>
                                                 <th>Đơn giá</th>
                                                 <th>Thành tiền</th>
                                             </tr>
@@ -93,19 +94,20 @@
                                             @{int total = 0;}
                                             @foreach (var item in Model)
                                             {
-                                                <tr style="border-top:1px solid #999;">
-                                                    <td>
-                                                        <img src="@item.Hinh" width="48">
-                                                    </td>
-                                                    <td>
-                                                        <strong>
-                                                            @item.TenSanPham
-                                                        </strong>
-                                                    </td>
-                                                    <td>@item.SoLuong</td>
-                                                    <td>@Int32.Parse(item.DonGia).ToString("#,##0") VNĐ</td>
-                                                    <td>@item.ThanhTien.ToString("#,##0") VNĐ</td>
-                                                </tr>
+                                            <tr style="border-top:1px solid #999;">
+                                                <td>
+                                                    <img src="@item.Hinh" width="48">
+                                                </td>
+                                                <td>
+                                                    <strong>
+                                                        @item.TenSanPham
+                                                    </strong>
+                                                </td>
+                                                <td>@item.SoLuong</td>
+                                                <td>@item.Size</td>
+                                                <td>@Int32.Parse(item.DonGia).ToString("#,##0") VNĐ</td>
+                                                <td>@item.ThanhTien.ToString("#,##0") VNĐ</td>
+                                            </tr>
                                                 total += item.ThanhTien;
                                             }
                                         </tbody>
