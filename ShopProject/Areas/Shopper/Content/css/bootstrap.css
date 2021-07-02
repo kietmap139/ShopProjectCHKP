@@ -2121,19 +2121,19 @@ fieldset[disabled] .btn-primary.active {
   background-color: #fff;
 }
 .btn-success {
-  color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
 }
-.btn-success:hover,
-.btn-success:focus,
-.btn-success:active,
-.btn-success.active,
-.open .dropdown-toggle.btn-success {
-  color: #fff;
-  background-color: #47a447;
-  border-color: #398439;
-}
+    .btn-success:hover,
+    .btn-success:focus,
+    .btn-success:active,
+    .btn-success.active,
+    .open .dropdown-toggle.btn-success {
+        color: #fff;
+        background-color: #ff0000;
+        border-color: #ff0000;
+    }
 .btn-success:active,
 .btn-success.active,
 .open .dropdown-toggle.btn-success {

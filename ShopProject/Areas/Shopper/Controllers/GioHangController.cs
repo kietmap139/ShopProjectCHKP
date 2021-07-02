@@ -30,13 +30,12 @@ namespace ShopProject.Areas.Shopper.Controllers
             if (giohang.FirstOrDefault(m => m.SanPhamID == SanPhamID) == null) // ko co sp nay trong gio hang
             {               
                 Models.Product sp = db.Products.Find(SanPhamID);  // tim sp theo sanPhamID
-
                 CartItem newItem = new CartItem()
                 {
                     SanPhamID = SanPhamID,
                     TenSanPham = sp.proName,
                     SoLuong = 1,
-                    /*Size = 38,*/
+                    Size = "Size",
                     Hinh = sp.proPhoto,
                     DonGia = (Int32.Parse(sp.proPrice) - (Int32.Parse(sp.proPrice) * sp.proDiscount)/100).ToString()
 
@@ -51,11 +50,11 @@ namespace ShopProject.Areas.Shopper.Controllers
                 cardItem.SoLuong++;
             }
 
-            // Action này sẽ chuyển hướng về trang chi tiết sp khi khách hàng đặt vào giỏ thành công. Bạn có thể chuyển về chính trang khách hàng vừa đứng bằng lệnh return Redirect(Request.UrlReferrer.ToString()); nếu muốn.
+            // Action này sẽ chuyển hướng về trang chi tiết sp khi khách hàng đặt vào giỏ thành công. chuyển về chính trang khách hàng vừa đứng bằng lệnh return Redirect(Request.UrlReferrer.ToString()); 
             return Redirect(Request.UrlReferrer.ToString());
         }
         //Sửa số lượng
-        public ActionResult SuaSoLuong(string SanPhamID, int soluongmoi, int sizemoi)
+        public ActionResult SuaSoLuong(string SanPhamID, int soluongmoi, string sizemoi)
         {
             // tìm carditem muon sua
             List<CartItem> giohang = Session["giohang"] as List<CartItem>;
@@ -70,10 +69,11 @@ namespace ShopProject.Areas.Shopper.Controllers
                 {
                     @ViewBag.GioError = "";
                     itemSua.SoLuong = soluongmoi;
-                    /*itemSua.Size = sizemoi;*/
+                    itemSua.Size = sizemoi;
                 }
             }
-            return RedirectToAction("Index");
+            return Redirect(Request.UrlReferrer.ToString());
+            /*return RedirectToAction("Index");*/
 
         }
         //Xoá khỏi giỏ

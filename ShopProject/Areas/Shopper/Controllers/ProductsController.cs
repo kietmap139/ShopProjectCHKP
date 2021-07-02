@@ -19,6 +19,14 @@ namespace ShopProject.Areas.Shopper.Controllers
             int pageNumber = (page ?? 1);
             return View(db.Products.Where(t => t.typeID == id).OrderByDescending(x => x.typeID).ToPagedList(pageNumber, pageSize));
         }
+        //hiển thị sản phẩm theo id loại
+        public ActionResult ProductsByProCate(int id, int? page)
+        {
+            ViewBag.typeName = db.ProductTypes.SingleOrDefault(t => t.cateID == id).typeName;
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(db.Products.Where(t => t.typeID == id).OrderByDescending(x => x.typeID).ToPagedList(pageNumber, pageSize));
+        }
         //hiển thị sản phẩm theo id nhà sản xuất
         public ActionResult ProductsByPdc(int id, int? page)
         {

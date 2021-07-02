@@ -40,25 +40,20 @@
         </ul>
         <div class="spec ">
             <h3><a href="@Url.Action("ProductsBestNew", "Products", new { title="Thời trang mới nhất", page=1 })" style="text-decoration:none;">Thời trang mới nhất</a></h3>
-            <div class="ser-t">
-                <b></b>
-                <span><i></i></span>
-                <b class="line"></b>
-            </div>
         </div>
         <div class="tab-head ">
             <div class=" tab-content tab-content-t ">
                 <div class="tab-pane active text-style" id="tab1">
                     <div class=" con-w3l">
-                       
+
                         @foreach (var item in db.Products.SqlQuery("SELECT * FROM Products ORDER BY proUpdateDate DESC"))
                         {
-                                                      
+
                             int newPrice = Int32.Parse(item.proPrice) - ((Int32.Parse(item.proPrice) * item.proDiscount.Value) / 100);
                             <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
                                 <div class="col-m">
                                     <a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })" class="offer-img">
-                                        <img src="@item.proPhoto"  alt="@item.proPhoto">
+                                        <img src="@item.proPhoto" alt="@item.proPhoto">
                                         @if (Int32.Parse(item.proPrice) > newPrice)
                                         {
                                             <div class="offer"><span>-@item.proDiscount %</span></div>
@@ -119,8 +114,8 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div class="add" >
-                                            <button class="btn btn-success btn-themvaogio"  value="@item.proID" @*href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"*@ > <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
+                                        <div class="add">
+                                            <button class="btn btn-success btn-themvaogio" value="@item.proID" @*href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"*@> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
                                         </div>
                                     </div>
                                 </div>
@@ -130,22 +125,15 @@
                 </div>
             </div>
         </div>
-        <!--image khuyến mãi-->
-        <div>
-            <img src="~/Image/khuyen-mai.jpg" class="center-block" />
-        </div>
-        <!--End Image khuyến mãi-->
-        <div class="spec " style="margin-top:30px;">
-            <h3><a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Thời trang giảm giá cao nhất", page=1 })" style="text-decoration:none;">Thời trang giảm giá cao nhất</a></h3>
-            <div class="ser-t">
-                <b></b>
-                <span><i></i></span>
-                <b class="line"></b>
-            </div>
-        </div>
+        <div class="clearfix"></div>
+        @*<div class="spec " style="margin-top:30px;">
+            <h3><a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Thời trang giảm giá cao nhất", page=1 })" style="text-decoration:none;"></a></h3>
+        </div>*@
         <div class="tab-head ">
+
             <div class=" tab-content tab-content-t ">
                 <div class="tab-pane active text-style" id="tab1">
+                    <a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Thời trang giảm giá cao nhất", page=1 })" style="text-decoration:none;"><img src="~/Image/khuyen-mai.png" style="background: #1a1616; max-width: 60%; min-height: 120px; padding: 27px 117px; margin-bottom: 35px; box-shadow: 0px 0px 20px 6px black;" class="center-block" /></a>
                     <div class=" con-w3l">
                         @{int qtt1 = 0;}
                         @foreach (var item in db.Products.SqlQuery("SELECT * FROM Products ORDER BY proDiscount DESC"))
@@ -159,7 +147,7 @@
                             <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
                                 <div class="col-m">
                                     <a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })" class="offer-img">
-                                        <img src="@item.proPhoto"  alt="@item.proPhoto">
+                                        <img src="@item.proPhoto" alt="@item.proPhoto">
                                         @if (Int32.Parse(item.proPrice) > newPrice)
                                         {
                                             <div class="offer"><span>-@item.proDiscount %</span></div>
@@ -210,8 +198,10 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="add">
-                                            <button class="btn btn-success btn-themvaogio" value="@item.proID" @*href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"*@> <span class="glyphicon glyphicon-shopping-cart">
-                                                            </span>  Thêm vào giỏ </button>
+                                            <button class="btn btn-success btn-themvaogio" value="@item.proID" @*href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"*@>
+                                                <span class="glyphicon glyphicon-shopping-cart">
+                                                </span>  Thêm vào giỏ
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -222,61 +212,24 @@
             </div>
         </div>
         <div class="row">
-            <div>
-                <div class="col-sm-4">
-                    <h4>Phương thức thanh toán &amp; giao hàng</h4>
-                    <div class="content">
-                        <div class="toasang">
-                            <img src="~/Image/icon_shipping.png"/>
-                        </div>
-                        <p><strong class="bold">Miễn phí vận chuyển cho đơn hàng trên 1.000.000VNĐ</strong></p>
-                        <ul style="font-size:large;">
-                            <li class="fa fa-check-circle">
-                                
-                                    Giao hàng và thu tiền tận nơi
-                                
-                            </li>
-                            <li class="fa fa-check-circle">
-                               Chuyển khoản và giao hàng
-                            </li>
-                            <li class="fa fa-check-circle">
-                                Mua hàng tại shop
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <h4>Hỗ trợ 24/7</h4>
-                    <div class="content">
-                        <div class="toasang">
-                            <img src="~/Image/icon_support.png" />
-                        </div>
-                        <p><strong>Gọi ngay cho chúng tôi khi bạn có thắc mắc</strong></p>
-                        <ul style="font-size:xx-large;">
-                            <li class="fa fa-check-circle">
-                                <strong class="big npl">0123456789 </strong>
-                            </li>
-                            <li class="fa fa-check-circle">
-                                <strong class="big npl">0123456789 </strong>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <!--<div>
+                
+                
                 <div class="col-sm-4">
                     <h4>Thẻ thành viên</h4>
                     <div class="content">
                         <div class="toasang">
                             <img src="~/Image/icon_card.png" />
-                        </div>
-                            @*<p><strong class="bold">Chế độ ưu đãi thành viên VIP:</strong></p>
-                            <ul style="font-size:large;">
-                                <li class="fa fa-check-circle">5% cho thành viên Bạc</li>
-                                <li class="fa fa-check-circle">10% cho thành viên Vàng</li>
-                                <li class="fa fa-check-circle">15% cho thành viên Kim cương</li>
-                            </ul>*@
-                    </div>
-                </div>
-            </div>
+                        </div>-->
+                        <!--<p><strong class="bold">Chế độ ưu đãi thành viên VIP:</strong></p>
+                        <ul style="font-size:large;">
+                            <li class="fa fa-check-circle">5% cho thành viên Bạc</li>
+                            <li class="fa fa-check-circle">10% cho thành viên Vàng</li>
+                            <li class="fa fa-check-circle">15% cho thành viên Kim cương</li>
+                        </ul>-->
+                    <!--</div>
+                </div> 
+            </div>-->
         </div>
     </div>
 </div>

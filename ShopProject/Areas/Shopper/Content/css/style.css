@@ -709,7 +709,7 @@ span.fa.fa-shopping-cart.my-cart-icon {
 
 
 .search-form input[type='text'] {
-    width: 87%;
+    width: 84%;
     padding: 10px;
     outline: none;
     font-size: 1em;
@@ -737,19 +737,19 @@ span.fa.fa-shopping-cart.my-cart-icon {
         }
 
 ::-webkit-input-placeholder {
-    color: #fff;
+    color: #0000009c;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-    color: #fff;
+    color: #0000009c;
 }
 
 ::-moz-placeholder { /* Firefox 19+ */
-    color: #fff;
+    color: #0000009c;
 }
 
 :-ms-input-placeholder {
-    color: #fff;
+    color: #0000009c;
 }
 /*-- //to-top --*/
 .spec {
@@ -2521,6 +2521,9 @@ p.in-pa {
         color: #62BF43;
         font-size: 0.9em;
     }
+    .reduced label {
+       text-decoration: line-through;
+    }
 
 .block-w3 {
     float: none;
@@ -2809,7 +2812,7 @@ span.last {
     }
 
     .search-form input[type='text'] {
-        width: 92%;
+        width: 88%;
     }
 
     .search-form {
@@ -2928,7 +2931,7 @@ span.last {
     }
 
     .search-form input[type='text'] {
-        width: 89%;
+        width: 79%;
     }
 
     .search-form {
