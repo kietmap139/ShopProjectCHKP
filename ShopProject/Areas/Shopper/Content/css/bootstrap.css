@@ -279,6 +279,104 @@ body {
   color: #333;
   background-color: #fff;
 }
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.number-input {
+    border: 2px solid #ddd;
+    display: inline-flex;
+}
+
+    .number-input,
+    .number-input * {
+        box-sizing: border-box;
+    }
+
+        .number-input button {
+            outline: none;
+            -webkit-appearance: none;
+            border: none;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            cursor: pointer;
+            margin: 0;
+            position: relative;
+        }
+            .number-input button:after {
+                display: inline-block;
+                position: absolute;
+                font-family: 'FontAwesome';
+                font-weight: 900;
+                content: '\f077';
+                transform: translate(-50%, -50%) rotate(180deg);
+            }
+
+            .number-input button.plus:after {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+        .number-input input[type=number] {
+            font-family: sans-serif;
+            width: 45%;
+            max-width: 5rem;
+            padding: .5rem;
+            border: solid #ddd;
+            border-width: 0 2px;
+            font-size: 2rem;
+            height: 3rem;
+            font-weight: bold;
+            text-align: center;
+        }
+#select-size {
+    height: 71px;
+    border: none;
+    overflow:auto ;
+}
+
+    #select-size::-moz-focus-inner {
+        border: 0;
+    }
+
+    #select-size:focus {
+        outline: none;
+    }
+
+    #select-size option {
+        width: 60px;
+        font-size: 1.2em;
+        padding: 10px 0;
+        text-align: center;
+        margin-right: 20px;
+        display: inline-block;
+        cursor: pointer;
+        border: rgb(0 0 0) solid 1px;
+        border-radius: 5px;
+        color: rgb(0 0 0);
+    }
+        #select-size option:hover {
+            width: 60px;
+            font-size: 1.2em;
+            padding: 10px 0;
+            text-align: center;
+            margin-right: 20px;
+            display: inline-block;
+            cursor: pointer;
+            border: rgb(86 35 35) solid 1px;
+            border-radius: 5px;
+            color: rgb(255 255 255);
+            background: #ff0000c7;
+        }
+
 input,
 button,
 select,

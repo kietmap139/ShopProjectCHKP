@@ -19,7 +19,7 @@
                     <script>
                         $(function () {
                             $("#picture-frame").zoomToo({
-                                magnify: 2
+                                magnify: 1.5
                             });
                         });
                     </script>
@@ -32,21 +32,9 @@
         <div class="col-md-7 single-top-left ">
             <div class="single-right">
                 <h3>@Model.proName</h3>
-                <p style="font-size:20px;">Size: @Model.proSize</p>
-                <div class="pr-single">
-                    <p class="reduced" style="font-size:24px;">
-                        @if (Int32.Parse(Model.proPrice) > newPrice)
 
-                        {
-                            <label>@proDAO.formatNumber(Model.proPrice) VNĐ</label>
-                        }
-                        else
-                        {
+                <a href="@Url.Action("ProductsByPdc", "Products", new { id= Model.pdcID, page=1 })" style="text-decoration: none; font-size: 18px;">Hãng: @Model.Producer.pdcName</a>
 
-                        }
-                        @proDAO.formatNumber(newPrice.ToString()) VNĐ
-                    </p>
-                </div>
                 <div class="block block-w3">
                     <div class="starbox small ghosting">
                         @if (db.Rates.Find(Model.proID) != null)
@@ -70,11 +58,40 @@
                     </div>
                 </div>
                 <p class="in-pa">Mô tả: @Model.proDescription </p>
+                <div class="pr-single">
+                    <p class="reduced" style="font-size:24px;">
+                        @if (Int32.Parse(Model.proPrice) > newPrice)
+
+                        {
+                            <label>@proDAO.formatNumber(Model.proPrice) VNĐ</label>
+                        }
+                        else
+                        {
+
+                        }
+                        @proDAO.formatNumber(newPrice.ToString()) VNĐ
+                    </p>
+                </div>
+                @*<select class="col-lg-4 sizemoidetail" style="height:30px;" name="sizemoi">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>*@
+                @*                <div class="form-control"> Size :@item.Size</div>*@
+                <select class="form-control style-7 sizemoidetail" id="select-size" name="sizemoi" multiple>
+                    @*                    <option selected="selected" style="display:none" value="@item.Size"></option>*@
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
                 <ul class="social-top">
-                    
                 </ul>
                 <div class="add add-3">
-                    <button class="btn btn-success btn-themvaogio" value="@Model.proID"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
+                    <button class="btn btn-success btn-detailthemvaogio" value="@Model.proID"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -173,65 +190,7 @@
                 </div>
             </div>
         </div>
-        <div class="clearfix"> </div>
-        <!--Giới thiệu-->
-        <div class="row">
-            <div>
-                <div class="col-sm-4">
-                    <h4>Phương thức thanh toán &amp; giao hàng</h4>
-                    <div class="content">
-                        <div class="toasang">
-                            <img src="~/Image/icon_shipping.png" />
-                        </div>
-                        <p><strong class="bold">Miễn phí vận chuyển cho đơn hàng trên 1.000.000VNĐ</strong></p>
-                        <ul style="font-size:large;">
-                            <li class="fa fa-check-circle">
-                                <a href="#" title="">
-                                    Giao hàng và thu tiền tận nơi
-                                </a>
-                            </li>
-                            <li class="fa fa-check-circle">
-                                <a href="#" title="">Chuyển khoản và giao hàng</a>
-                            </li>
-                            <li class="fa fa-check-circle">
-                                <a href="#" title="">Mua hàng tại shop</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <h4>Hỗ trợ 24/7</h4>
-                    <div class="content">
-                        <div class="toasang">
-                            <img src="~/Image/icon_support.png" />
-                        </div>
-                        <p><strong>Gọi ngay cho chúng tôi khi bạn có thắc mắc</strong></p>
-                        <ul style="font-size:xx-large;">
-                            <li class="fa fa-check-circle">
-                                <strong class="big npl">01212692802 </strong>
-                            </li>
-                            <li class="fa fa-check-circle">
-                                <strong class="big npl">01212692802 </strong>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <h4>Thẻ thành viên</h4>
-                    <div class="content">
-                        <div class="toasang">
-                            <img src="~/Image/icon_card.png" />
-                        </div>
-                        <p><strong class="bold">Chế độ ưu đãi thành viên VIP:</strong></p>
-                        <ul style="font-size:large;">
-                            <li class="fa fa-check-circle">5% cho thành viên Bạc</li>
-                            <li class="fa fa-check-circle">10% cho thành viên Vàng</li>
-                            <li class="fa fa-check-circle">15% cho thành viên Kim cương</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="clearfix"> </div>      
     </div>
 </div>
 
