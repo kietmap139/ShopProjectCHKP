@@ -8,20 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <script src="~/Areas/Shopper/Content/js/custom.js"></script>
     <link href="~/Areas/Shopper/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Areas/Shopper/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Shopper/Content/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/Areas/Shopper/Content/css/style.css" rel='stylesheet' type='text/css' />
     <link href="~/Areas/Shopper/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="~/Areas/Shopper/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="~/Areas/Shopper/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Shopper/vendor/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <script type="application/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
         function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <link href="~/Areas/Shopper/Content/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="~/Areas/Shopper/Content/css/style.css" rel='stylesheet' type='text/css' />
+
+
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="~/Areas/Shopper/Content/js/move-top.js"></script>
     <script type="text/javascript" src="~/Areas/Shopper/Content/js/easing.js"></script>
-    <link href="~/Areas/Shopper/vendor/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
     <!--alertify-->
@@ -34,76 +36,7 @@
     <script src="~/Areas/Shopper/Content/js/jstarbox.js"></script>
     <link rel="stylesheet" href="~/Areas/Shopper/Content/css/jstarbox.css" type="text/css" media="screen" charset="utf-8" />
     <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
-            });
-        });
-
-        $(document).ready(function () {
-            $(".switcher-btn").click(function () {
-                $(".switcher-wrapper").toggleClass("switcher-toggled")
-            })
-            $("#page").click(function () {
-                $(".switcher-wrapper").removeClass("switcher-toggled")
-            })
-            $('.btn-themvaogio').click(function () {
-                var product_id = $(this).val();
-                $.ajax({
-                url: '@Url.Action("ThemVaoGio", "GioHang")?SamPhamID='+product_id,
-                data: { SanPhamID : product_id },
-                    success: function (data) {
-                        $('body').load(location.href);
-                },
-                error: function (data) {
-
-                    alert('Sản phẫm lỗi');
-
-                }
-                });
-
-            })
-            @*$('.btn-sm').click(function () {
-                var product_id_delete = $(this).val();
-                $.ajax({
-                url: '@Url.Action("XoaKhoiGio", "GioHang")?SamPhamID='+product_id_delete,
-                data: { SanPhamID: product_id_delete },
-                success: function (data) {
-                    $('body').load(location.href);
-                    $(".switcher-wrapper").toggleClass("switcher-toggled")
-                },
-                error: function (data) {
-
-                    alert('Sản phẫm lỗi');
-
-                }
-                });
-
-           })*@
-            $('.btn-xoakhoigio').click(function () {
-                var product_id_delete = $(this).val();
-                $.ajax({
-                url: '@Url.Action("XoaKhoiGio", "GioHang")?SamPhamID='+product_id_delete,
-                data: { SanPhamID: product_id_delete },
-                    success: function (data) {
-                     $('body').load(location.href);
-                     $(".switcher-wrapper").toggleClass("switcher-toggled")
-                },
-                error: function (data) {
-
-                    alert('Sản phẫm lỗi');
-
-                }
-                });
-
-           })
-        });
-        $(document).ready(function () {
-
-
-        });
-
+        
     </script>
 
     <!---//End-rate---->
@@ -125,18 +58,18 @@
             background-color: #555;
         }
 
-        #style-7::-webkit-scrollbar-track {
+        .style-7::-webkit-scrollbar-track {
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
             border-radius: 10px;
             background-color: #F5F5F5;
         }
 
-        #style-7::-webkit-scrollbar {
+        .style-7::-webkit-scrollbar {
             width: 12px;
             background-color: #F5F5F5;
         }
 
-        #style-7::-webkit-scrollbar-thumb {
+        .style-7::-webkit-scrollbar-thumb {
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #e02e2e70;
@@ -174,24 +107,27 @@
                             <ul class="nav navbar-nav " id="menu11">
                                 <li class=" "><a href="/" class="hyper "><span>Trang chủ</span></a></li>
                                 @{ ShopProject.Areas.Shopper.Models.UserContext db = new ShopProject.Areas.Shopper.Models.UserContext();
-                                                foreach (var itemCate in db.Categories)
+                                    foreach (var itemCate in db.Categories)
+                                    {
+                                        <li class="dropdown">
+                                            <a href="javascrip::void()" class="dropdown-toggle hyper dropbtn"><span>@itemCate.cateName<b class="caret"></b></span></a>
+                                            <ul class="dropdown-menu-content">
+                                                @foreach (var itemPt in db.ProductTypes.Where(c => c.cateID == itemCate.cateID))
                                                 {
-                                    <li class="dropdown ">
-                                        <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>@itemCate.cateName<b class="caret"></b></span></a>
-                                        <ul class="dropdown-menu">
+                                                    <li><a href="@Url.Action("ProductsByProType", "Products", new { id = itemPt.typeID, page = 1 })"><i class="fa fa-angle-right" aria-hidden="true"></i> @itemPt.typeName</a></li>
+                                                }
+                                            </ul>
+                                        </li>
 
-                                            @foreach (var itemPt in db.ProductTypes.Where(c => c.cateID == itemCate.cateID))
-                                            {
-                            <li><a href="@Url.Action("ProductsByProType", "Products", new { id = itemPt.typeID, page = 1 })"><i class="fa fa-angle-right" aria-hidden="true"></i>@itemPt.typeName</a></li>}
-                                        </ul>
-                                    </li> } }
-                                <li class="dropdown ">
-                                    <a href="javascrip::void()" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Hãng sản xuất<b class="caret"></b></span></a>
-                                    <ul class="dropdown-menu">
-
+                                    }
+                                }
+                                <li class="dropdown">
+                                    <a href="javascrip::void()" class="dropdown-toggle hyper dropbtn"><span>Hãng sản xuất<b class="caret"></b></span></a>
+                                    <ul class="dropdown-menu-content">
                                         @foreach (var itemPdc in db.Producers)
                                         {
-                            <li><a href="@Url.Action("ProductsByPdc", "Products", new { id = itemPdc.pdcID, page = 1 })"><img src="@itemPdc.pdcPhoto" width="20" height="20" /> @itemPdc.pdcName</a></li>}
+                                            <li><a href="@Url.Action("ProductsByPdc", "Products", new { id = itemPdc.pdcID, page = 1 })"><img src="@itemPdc.pdcPhoto" width="40" height="25" /> @itemPdc.pdcName</a></li>
+                                        }
                                     </ul>
                                 </li>
                                 <li><a href="#" class="hyper "><span>Phản hồi</span></a></li>
@@ -201,8 +137,8 @@
                     <div class="search-form">
                         @using (Ajax.BeginForm("SearchByName", "Products", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
                         {
-            <input type="text" style="" placeholder="Tìm kiếm..." tabindex="1" name="name">
-                            <button type="submit" class="btn btn-default" style=" height: 42.5px;"><i class=" fa fa-search"></i></button>}
+                            <input type="text" style=" border-radius: 21px;" placeholder="Tìm kiếm..." tabindex="1" name="name">
+                            <button type="submit" class="btn btn-default" style="height: 35.5px; border-radius: 28px; background-color: transparent;"><i class=" fa fa-search"></i></button>}
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -225,16 +161,6 @@
                     <p>
                         Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm dịch vụ và sản phẩm tốt hơn nữa.
                     </p>
-                </div>
-                <div class="col-md-3 footer-grid ">
-                    <h3>Menu</h3>
-                    <ul>
-                        <li><a href="/">Trang chủ</a></li>
-                        @foreach (var itemCate in db.Categories)
-                        {
-            <li><a href="#">@itemCate.cateName</a></li>
-}
-                    </ul>
                 </div>
                 <div class="col-md-3 footer-grid">
                     <h3>Phương thức thanh toán &amp; giao hàng</h3>
@@ -264,32 +190,14 @@
                                 <strong class="big npl">0123456789 </strong>
                             </li>
                             <li class="fa fa-check-circle">
-                                <strong class="big npl">0123456789 </strong>
+                                <strong class="big npl"> shkp@gmail.com</strong>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="footer-bottom">
-                    <h2><a href="index.html"><b>C<br>H<br>K<br>P</b>Shop<span>The Best Fashion</span></a></h2>
-                    <ul class="social-fo">
-                    </ul>
-                    <div class=" address">
-                        <div class="col-md-4 fo-grid1">
-                            <p><i class="fa fa-home" aria-hidden="true"></i> Tp. Hồ Chí Minh</p>
-                        </div>
-                        <div class="col-md-4 fo-grid1">
-                            <p><i class="fa fa-phone" aria-hidden="true"></i>0123456789</p>
-                        </div>
-                        <div class="col-md-4 fo-grid1">
-                            <p><a href="mailto:AAA@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i>AAA@gmail.com</a></p>
-                        </div>
-                        <div class="clearfix"></div>
-
-                    </div>
-                </div>
                 <div class="copy-right">
-                    <p> &copy; 2020 Shopper. All Rights Reserved | Design by  CHKP</p>
+                    <p> &copy; 2021 SHKP, All Rights Reserved | Design by CHKP</p>
                 </div>
             </div>
         </div>
@@ -299,16 +207,18 @@
     @{List<ShopProject.Areas.Shopper.Models.CartItem> gio = Session["giohang"] as List<ShopProject.Areas.Shopper.Models.CartItem>; }
     <div class="switcher-wrapper" id="slidebar">
         <div class="switcher-btn" id="shopbadge">
-            @{ if (gio == null || gio.Count == 0)
-                            {
-                <a>
-                    <span class="fa fa-shopping-cart my-cart-icon" style=" margin-left: 4px;color:black!important"><span class="badge badge-notify my-cart-badge" style="background-color: #1414148c">0</span></span>
-                </a> }
-                            else
-                            {
-                <a>
-                    <span class="fa fa-shopping-cart my-cart-icon" style=" margin-left: 4px;color:black!important"><span class="badge badge-notify my-cart-badge" style="background-color: #1414148c">@gio.Count</span></span>
-                </a> } }
+            @{if (gio == null || gio.Count == 0)
+                {
+                    <a>
+                        <span class="fa fa-shopping-cart my-cart-icon" style=" margin-left: 4px;color:black!important"><span class="badge badge-notify my-cart-badge" style="background-color: #1414148c">0</span></span>
+                    </a>
+                }
+                else
+                {
+                    <a>
+                        <span class="fa fa-shopping-cart my-cart-icon" style=" margin-left: 4px;color:black!important"><span class="badge badge-notify my-cart-badge" style="background-color: #1414148c">@gio.Count</span></span>
+                    </a> }
+            }
         </div>
 
         <div class="switcher-body">
@@ -317,42 +227,42 @@
                 @if (gio == null || gio.Count == 0)
                 {
 
-    <p class="text-info text-center" style="font-size:25px;">
-        Giỏ hàng của bạn trống!
-    </p> }
+                    <p class="text-info text-center" style="font-size:25px;">
+                        Giỏ hàng của bạn trống!
+                    </p> }
                 else
                 {
                     int total = 0;
                     int i = 0;
-    <table class="table-responsive-slidebar">
-        <thead>
-            <tr style=" background: #d04d4d;">
-                <th class="col" style="width: 27.6%; text-align: center;">Hình</th>
-                <th class="col" style="width: 32%; text-align: center;">Tên sản phẩm</th>
-                <th class="col" style="width: 21%; text-align: center;">Đơn giá</th>
-                <th class="col" style="width: 17%; text-align: center;"></th>
-            </tr>
-        </thead>
-        <tbody id="style-7">
-            @foreach (var item in gio)
-            {
-<tr style=" display: flex; position: relative; margin-top: 1px; border-bottom: 1px solid red;">
-    <td class="col" style="width: 30%; height: fit-content; margin-top: -1px; "><img src="@item.Hinh" width="80" height="80" /> </td>
-    <td class="col" style="width:33%;"><a target="_blank" href="@Url.Action("ProductDetail", "Products", new { id = item.SanPhamID })" style="font-size: medium; margin: auto;"> @item.TenSanPham </a> </td>
-    <td class="col" style="width: 21%;"><a style=" margin: auto;"> @Int32.Parse(item.DonGia).ToString("#,##0") VNĐ</a> </td>
-    <td class="col" style="width: 17%;"> <button value="@item.SanPhamID" @*href="@Url.Action("XoaKhoiGio", new { SanPhamID = item.SanPhamID })"*@ class="btn btn-danger btn-sm btn-xoakhoigio">Xóa</button> </td>
-</tr>i++;
-                    total += @item.ThanhTien;
-                }
-        </tbody>
-    </table>}
+                    <table class="table-responsive-slidebar">
+                        <thead>
+                            <tr style=" background: #d04d4d;">
+                                <th class="col" style="width: 27.6%; text-align: center;">Hình</th>
+                                <th class="col" style="width: 32%; text-align: center;">Tên sản phẩm</th>
+                                <th class="col" style="width: 21%; text-align: center;">Đơn giá</th>
+                                <th class="col" style="width: 17%; text-align: center;"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="style-7">
+                            @foreach (var item in gio)
+                            {
+                                <tr style=" display: flex; position: relative; margin-top: 1px; border-bottom: 1px solid red;">
+                                    <td class="col" style="width: 30%; height: fit-content; margin-top: -1px; "><img src="@item.Hinh" width="80" height="80" /> </td>
+                                    <td class="col" style="width:33%;"><a target="_blank" href="@Url.Action("ProductDetail", "Products", new { id = item.SanPhamID })" style="font-size: medium; margin: auto;"> @item.TenSanPham </a> </td>
+                                    <td class="col" style="width: 21%;"><a style=" margin: auto;"> @Int32.Parse(item.DonGia).ToString("#,##0") VNĐ</a> </td>
+                                    <td class="col" style="width: 17%;"> <button value="@item.SanPhamID" @*href="@Url.Action("XoaKhoiGio", new { SanPhamID = item.SanPhamID })"*@ class="btn btn-danger btn-sm btn-xoakhoigio">Xóa</button> </td>
+                                </tr>
+                                i++;
+                                total += @item.ThanhTien;
+                            }
+                        </tbody>
+                    </table>}
 
             </div>
             <div class="side-shopping-buy"><a href="@Url.Action("Index", "GioHang")"> Thanh toán</a></div>
 
         </div>
     </div>
-
     <!--slidebar end-->
     <!-- smooth scrolling -->
     <script type="text/javascript">
@@ -367,10 +277,11 @@
             */
             $().UItoTop({ easingType: 'easeOutQuart' });
         });
-            function alertsize() {
-                alert("Hãy kiểm tra kích cỡ kích cỡ");
+        function alertsize() {
+            alert("Hãy kiểm tra kích cỡ");
         }
     </script>
+    <script src="~/Areas/Shopper/Content/js/custom.js"></script>
     <script src="~/Areas/Shopper/Content/js/bootstrap.js"></script>
     <a href="#" id="toTop" style="display: block;"><i class='bx bxs-up-arrow-alt'></i></a>
     <!-- //smooth scrolling -->

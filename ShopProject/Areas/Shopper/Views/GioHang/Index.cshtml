@@ -49,42 +49,38 @@
                                 <td class="text-center"><img src="@item.Hinh" width="70" height="60" /> </td>
                                 <td><a target="_blank" href="@Url.Action("ProductDetail", "Products", new { id = item.SanPhamID })" style="font-size:medium;"> @item.TenSanPham </a> </td>
                                 <td>
-                                    <form id="formSoluong_@i" action="@Url.Action("SuaSoLuong","GioHang")" method="get">
-                                        <input type="hidden" name="SanPhamID" value="@item.SanPhamID" />
-                                        <input class="col-lg-4" style="height:30px;" type="number" min="1" step="1" name="soluongmoi" value="@item.SoLuong" />
-                                        <select class="col-lg-4" style="height:30px;" name="sizemoi">
-                                            <option style="display:none;" value="@item.Size">@item.Size</option>
+                                    <div @*id="formSoluong_@i"*@ class="formsoluong" @*action="@Url.Action("SuaSoLuong","GioHang")" method="get"*@>
+                                        <input class="idsp" type="hidden" name="SanPhamID" value="@item.SanPhamID" />
+                                        <div class="number-input">
+                                            <button type="button"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="giohangprice" ></button>
+                                            <input class="col-lg-4 soluongsp" style="height:30px;" type="number" min="1" step="1" name="soluongmoi" value="@item.SoLuong" />
+                                            <button type="button"  onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus giohangprice"></button>
+                                        </div>
+                                        <div class="form-control"> Size :@item.Size</div>
+                                        <select class="form-control style-7 giohangprice" id="select-size" name="sizemoi" multiple>
+                                            <option selected="selected" style="display:none" value="@item.Size"></option>
                                             <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                            <option value="XXL">XXL</option>
-                                        </select>
-                                        <button class="btn-danger btn-capnhat" onclick="$('#formSoluong_@i').submit();">Cập nhật</button>
-                                    </form>
+                                            <option  value="M">M</option>
+                                            <option  value="L">L</option>
+                                            <option  value="XL">XL</option>
+                                            <option  value="XXL">XXL</option>
+                                        </select> 
+                                    </div>
                                 </td>
                                 <td> @Int32.Parse(item.DonGia).ToString("#,##0") VNĐ </td>
                                 <td> @item.ThanhTien.ToString("#,##0") VNĐ </td>
-                                <td> <a href="@Url.Action("XoaKhoiGio",new { SanPhamID = item.SanPhamID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm btn-xoakhoigio">Xóa</a> </td>
+                                <td> <button value="@item.SanPhamID" @*href="@Url.Action("XoaKhoiGio",new { SanPhamID = item.SanPhamID})"*@ onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm btn-xoakhoigio">Xóa</button> </td>
                             </tr>
                             i++;
                             total += @item.ThanhTien;
-                        }
+                          }
                         <tr>
                             <td></td>
                             <td class="text-right"></td>
                             <td></td>
                             <td class="text-right">Tổng thành tiền:</td>
                             <td style="font-size:large;">@total.ToString("#,##0") VNĐ </td>
-                            @*@if (item.Size == "Size")
-                            {
-                                <td><button role="button" class="btn btn-success" id="btn-thanhtoan" onclick="alertsize()">Thanh toán</button></td>
-                            }
-                            else
-                            {*@
-                                <td><a href="@Url.Action("Index", "ThanhToan")" role="button" class="btn btn-success" id="btn-thanhtoan">Thanh toán</a></td>
-                            
-
+                            <td><a href="@Url.Action("Index", "ThanhToan")" role="button" class="btn btn-success" id="btn-thanhtoan">Thanh toán</a></td>
                         </tr>
                     </table>
                 </div>
