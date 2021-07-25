@@ -19,27 +19,26 @@
 
 <div class="content-top ">
     <div class="container ">
-        <ul class="htmlcontent-item-1 row clearfix" style="list-style-type:none;">
-            <li class="htmlcontent-item-1 col-sm-3">
-                <a href="@Url.Action("ProductsBytypeName", "Products", new { name="Áo sơ mi", page=1 })" class="hoverSlideHome" title="">
-                    <img src="/Image/slide-1-trang-chu-slide-1.jpg" class="item-img " title="" alt="" width="270" height="400" />
+        <ul class="htmlcontent-item-1 row clearfix" style="list-style-type: none; text-align: center; margin-bottom: 25px; ">
+            <li>
+                <a href="@Url.Action("ProductsBytypeName", "Products", new { name="Áo khoác", page=1 })" @*class="hoverSlideHome"*@ title="">
+                    <img src="~/Image/banner/banner-ao-khoac.jpg" class="item-img " title="" alt="" width="800" height="300" />
                 </a>
             </li>
-            <li class="htmlcontent-item-2 col-sm-3">
-                <a href="@Url.Action("ProductsBytypeName", "Products", new { name="Phụ kiện", page=1 })" class="hoverSlideHome" title="">
-                    <img src="/Image/slide-2-trang-chu-slide-2.jpg" class="item-img " title="" alt="" width="570" height="227">
-                </a>
-            </li>
-            <li class="htmlcontent-item-3 col-sm-3">
-            </li>
-            <li class="htmlcontent-item-4 col-sm-3">
-                <a href="@Url.Action("ProductsBytypeName", "Products", new { name="Quần kaki", page=1 })" class="hoverSlideHome" title="">
-                    <img src="/Image/slide-4-trang-chu-slide-4.jpg" class="item-img " title="" alt="" width="270" height="400">
-                </a>
-            </li>
+                @*<li class="htmlcontent-item-2 col-sm-3">
+                    <a href="@Url.Action("ProductsBytypeName", "Products", new { name="Phụ kiện", page=1 })" class="hoverSlideHome" title="">
+                        <img src="~/Image/banner/aokhoacnam.png" class="item-img " title="" alt="" width="250" height="350">
+                    </a>
+                </li>*@
+            
         </ul>
+        
         <div class="spec ">
-            <h3><a href="@Url.Action("ProductsBestNew", "Products", new { title="Thời trang mới nhất", page=1 })" style="text-decoration:none;">Thời trang mới nhất</a></h3>
+            <h3><a href="@Url.Action("ProductsBestNew", "Products", new { title="Thời trang mới nhất", page=1 })" style="text-decoration: none; font-family: 'Quicksand-VariableFont_wght';">Thời trang mới nhất</a></h3>
+            <div class="ser-t">
+                <b class="line"> </b>
+                
+            </div>
         </div>
         <div class="tab-head ">
             <div class=" tab-content tab-content-t ">
@@ -49,6 +48,100 @@
                         @foreach (var item in db.Products.SqlQuery("SELECT * FROM Products ORDER BY proUpdateDate DESC"))
                         {
 
+                            int newPrice = Int32.Parse(item.proPrice) - ((Int32.Parse(item.proPrice) * item.proDiscount.Value) / 100);
+                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
+                                <div class="col-m">
+                                    <a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })" class="offer-img">
+                                        <img src="@item.proPhoto" alt="@item.proPhoto">
+                                        @if (Int32.Parse(item.proPrice) > newPrice)
+                                        {
+                                            <div class="offer"><span>-@item.proDiscount %</span></div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    </a>
+                                    <div class="mid-1">
+                                        <div class="women">
+                                            @if (item.proName.Length > 20)
+                                            {
+                                                <h6><a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })" data-toggle="tooltip" title="@item.proName">@item.proName.Substring(0, 18) . . .</a></h6>
+                                            }
+                                            else
+                                            {
+                                                <h6><a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })">@item.proName</a></h6>
+                                            }
+                                        </div>
+                                        
+                                        <div class="mid-2">
+                                            <p>
+                                                @if (Int32.Parse(item.proPrice) > newPrice)
+
+                                                {
+                                                    <label>@proDAO.formatNumber(item.proPrice) VNĐ</label>
+                                                }
+                                                else
+                                                {
+
+                                                }
+                                                <em class="item_price">@proDAO.formatNumber(newPrice.ToString()) VNĐ</em>
+                                            </p>
+                                            <div class="clearfix"></div>
+                                            <div class="block">
+                                                @if (db.Rates.Find(item.proID) != null)
+                                                {
+                                                    for (int i = 0; i < db.Rates.Find(item.proID).rateStar; i++)
+                                                    {
+                                                        <img src="~/Image/star.png" style="background-color:rgb(255, 172, 0);" />
+                                                    }
+                                                    for (int i = 0; i < 5 - db.Rates.Find(item.proID).rateStar; i++)
+                                                    {
+                                                        <img src="~/Image/star.png" style="background-color:#b0b0b0" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    for (int i = 0; i < 5; i++)
+                                                    {
+                                                        <img src="~/Image/star.png" style="background-color:#b0b0b0" />
+                                                    }
+                                                }
+                                            </div>
+                                            @*<div>
+                                                <a href="#"><img src="@item.Producer.pdcPhoto" width="50" height="25" /></a>
+                                            </div>*@
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="add">
+                                            <button class="btn btn-success btn-themvaogio" value="@item.proID" @*href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"*@> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        @*<div class="spec " style="margin-top:30px;">
+            <h3><a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Thời trang giảm giá cao nhất", page=1 })" style="text-decoration:none;"></a></h3>
+        </div>*@
+        <div class="tab-head ">
+
+            <div class=" tab-content tab-content-t ">
+                <div class="tab-pane active text-style" id="tab1">
+                    <a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Thời trang giảm giá cao nhất", page=1 })" style="text-decoration:none;"><img src="~/Image/khuyen-mai.png" style="background: #1a1616; max-width: 60%; min-height: 120px; padding: 27px 117px; margin-bottom: 35px; box-shadow: 0px 0px 20px 6px black;" class="center-block" /></a>
+                    <div class=" con-w3l">
+                        @{int qtt1 = 0;}
+                        @foreach (var item in db.Products.SqlQuery("SELECT * FROM Products ORDER BY proDiscount DESC"))
+                        {
+                            qtt1++;
+                            if (qtt1 > 4)
+                            {
+                                break;
+                            }
                             int newPrice = Int32.Parse(item.proPrice) - ((Int32.Parse(item.proPrice) * item.proDiscount.Value) / 100);
                             <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
                                 <div class="col-m">
@@ -109,92 +202,9 @@
                                                     }
                                                 }
                                             </div>
-                                            <div>
+                                            @*<div>
                                                 <a href="#"><img src="@item.Producer.pdcPhoto" width="50" height="25" /></a>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="add">
-                                            <button class="btn btn-success btn-themvaogio" value="@item.proID" @*href="@Url.Action("ThemVaoGio", "GioHang", new { SanPhamID = item.proID })"*@> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        @*<div class="spec " style="margin-top:30px;">
-            <h3><a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Thời trang giảm giá cao nhất", page=1 })" style="text-decoration:none;"></a></h3>
-        </div>*@
-        <div class="tab-head ">
-
-            <div class=" tab-content tab-content-t ">
-                <div class="tab-pane active text-style" id="tab1">
-                    <a href="@Url.Action("ProductsBestDiscount", "Products", new { title="Thời trang giảm giá cao nhất", page=1 })" style="text-decoration:none;"><img src="~/Image/khuyen-mai.png" style="background: #1a1616; max-width: 60%; min-height: 120px; padding: 27px 117px; margin-bottom: 35px; box-shadow: 0px 0px 20px 6px black;" class="center-block" /></a>
-                    <div class=" con-w3l">
-                        @{int qtt1 = 0;}
-                        @foreach (var item in db.Products.SqlQuery("SELECT * FROM Products ORDER BY proDiscount DESC"))
-                        {
-                            qtt1++;
-                            if (qtt1 > 4)
-                            {
-                                break;
-                            }
-                            int newPrice = Int32.Parse(item.proPrice) - ((Int32.Parse(item.proPrice) * item.proDiscount.Value) / 100);
-                            <div class="col-md-3 m-wthree" style="margin-bottom:30px;">
-                                <div class="col-m">
-                                    <a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })" class="offer-img">
-                                        <img src="@item.proPhoto" alt="@item.proPhoto">
-                                        @if (Int32.Parse(item.proPrice) > newPrice)
-                                        {
-                                            <div class="offer"><span>-@item.proDiscount %</span></div>
-                                        }
-                                        else
-                                        {
-
-                                        }
-                                    </a>
-                                    <div class="mid-1">
-                                        <div class="women">
-                                            @if (item.proName.Length > 20)
-                                            {
-                                                <h6><a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })" data-toggle="tooltip" title="@item.proName">@item.proName.Substring(0, 19) . . .</a></h6>
-                                            }
-                                            else
-                                            {
-                                                <h6><a href="@Url.Action("ProductDetail", "Products", new { id=item.proID })">@item.proName</a></h6>
-                                            }
-                                        </div>
-                                        (Size: @item.proSize)
-                                        <div class="mid-2">
-                                            <p><label>@proDAO.formatNumber(item.proPrice) VNĐ</label><em class="item_price">@proDAO.formatNumber(newPrice.ToString()) VNĐ</em></p>
-                                            <div class="clearfix"></div>
-                                            <div class="block">
-                                                @if (db.Rates.Find(item.proID) != null)
-                                                {
-                                                    for (int i = 0; i < db.Rates.Find(item.proID).rateStar; i++)
-                                                    {
-                                                        <img src="~/Image/star.png" style="background-color:rgb(255, 172, 0);" />
-                                                    }
-                                                    for (int i = 0; i < 5 - db.Rates.Find(item.proID).rateStar; i++)
-                                                    {
-                                                        <img src="~/Image/star.png" style="background-color:#b0b0b0" />
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    for (int i = 0; i < 5; i++)
-                                                    {
-                                                        <img src="~/Image/star.png" style="background-color:#b0b0b0" />
-                                                    }
-                                                }
-                                            </div>
-                                            <div>
-                                                <a href="#"><img src="@item.Producer.pdcPhoto" width="50" height="25" /></a>
-                                            </div>
+                                            </div>*@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="add">
@@ -213,23 +223,23 @@
         </div>
         <div class="row">
             <!--<div>
-                
-                
-                <div class="col-sm-4">
-                    <h4>Thẻ thành viên</h4>
-                    <div class="content">
-                        <div class="toasang">
-                            <img src="~/Image/icon_card.png" />
-                        </div>-->
-                        <!--<p><strong class="bold">Chế độ ưu đãi thành viên VIP:</strong></p>
-                        <ul style="font-size:large;">
-                            <li class="fa fa-check-circle">5% cho thành viên Bạc</li>
-                            <li class="fa fa-check-circle">10% cho thành viên Vàng</li>
-                            <li class="fa fa-check-circle">15% cho thành viên Kim cương</li>
-                        </ul>-->
-                    <!--</div>
-                </div> 
-            </div>-->
+
+
+            <div class="col-sm-4">
+                <h4>Thẻ thành viên</h4>
+                <div class="content">
+                    <div class="toasang">
+                        <img src="~/Image/icon_card.png" />
+                    </div>-->
+            <!--<p><strong class="bold">Chế độ ưu đãi thành viên VIP:</strong></p>
+        <ul style="font-size:large;">
+            <li class="fa fa-check-circle">5% cho thành viên Bạc</li>
+            <li class="fa fa-check-circle">10% cho thành viên Vàng</li>
+            <li class="fa fa-check-circle">15% cho thành viên Kim cương</li>
+        </ul>-->
+            <!--</div>
+            </div>
+        </div>-->
         </div>
     </div>
 </div>
@@ -239,6 +249,7 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+
 <style>
     .hoverSlideHome img {
         -webkit-transform: scale(0.8); /*Webkit: Scale down image to 0.8x original size*/
@@ -285,7 +296,6 @@
 
         -moz-transition: all .3s ease;
 
-        -ms-transition: all .3s ease;
 
         -o-transition: all .3s ease;
 
@@ -317,7 +327,6 @@
 
         -moz-transition: all .3s ease;
 
-        -ms-transition: all .3s ease;
 
         -o-transition: all .3s ease;
 
