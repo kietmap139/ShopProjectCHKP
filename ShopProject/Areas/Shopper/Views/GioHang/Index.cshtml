@@ -49,7 +49,7 @@
                                 <td class="text-center"><img src="@item.Hinh" width="70" height="60" /> </td>
                                 <td><a target="_blank" href="@Url.Action("ProductDetail", "Products", new { id = item.SanPhamID })" style="font-size:medium;"> @item.TenSanPham </a> </td>
                                 <td>
-                                    <div @*id="formSoluong_@i"*@ class="formsoluong" @*action="@Url.Action("SuaSoLuong","GioHang")" method="get"*@>
+                                    <div @*id="formSoluong_@i"*@ class="formsoluong">
                                         <input class="idsp" type="hidden" name="SanPhamID" value="@item.SanPhamID" />
                                         <div class="number-input">
                                             <button type="button"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="giohangprice" ></button>

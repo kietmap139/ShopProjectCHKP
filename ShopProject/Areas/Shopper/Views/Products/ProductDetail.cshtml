@@ -63,7 +63,7 @@
                         @if (Int32.Parse(Model.proPrice) > newPrice)
 
                         {
-                            <label>@proDAO.formatNumber(Model.proPrice) VNĐ</label>
+                            <label style="font-weight: unset; font-size: 16px; ">@proDAO.formatNumber(Model.proPrice) VNĐ</label>
                         }
                         else
                         {
@@ -72,16 +72,10 @@
                         @proDAO.formatNumber(newPrice.ToString()) VNĐ
                     </p>
                 </div>
-                @*<select class="col-lg-4 sizemoidetail" style="height:30px;" name="sizemoi">
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-        </select>*@
-                @*                <div class="form-control"> Size :@item.Size</div>*@
+                <div class="form-control"> Size đang sẵn có: <a style=" font-weight: 900;"> @Model.proSize</a> </div>
+
                 <select class="form-control style-7 sizemoidetail" id="select-size" name="sizemoi" multiple>
-                    @*                    <option selected="selected" style="display:none" value="@item.Size"></option>*@
+                    @*<option selected="selected" style="display:none" value="@item.Size"></option>*@
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -93,6 +87,9 @@
                 <div class="add add-3">
                     <button class="btn btn-success btn-detailthemvaogio" value="@Model.proID"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
                 </div>
+                @*<div >
+                    <button class="btn btn-adn" style="position: absolute; right: 0; " type="button" onclick="quay_lai_trang_truoc()">Quay lại trang trước</button>
+                </div>*@
                 <div class="clearfix"> </div>
             </div>
         </div>
@@ -101,8 +98,6 @@
         <div class="spec " style="margin-top:30px;">
             <h3><a href="@Url.Action("ProductsByPdc", "Products", new { id= Model.pdcID, page=1 })" style="text-decoration:none;">Thời trang cùng hãng @Model.Producer.pdcName</a></h3>
             <div class="ser-t">
-                <b></b>
-                <span><i></i></span>
                 <b class="line"></b>
             </div>
         </div>
@@ -182,6 +177,7 @@
                                         <div class="add">
                                             <button class="btn btn-success btn-themvaogio" value="@item.proID"> <span class="glyphicon glyphicon-shopping-cart"></span>  Thêm vào giỏ </button>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +190,13 @@
     </div>
 </div>
 
+<script>
+    function quay_lai_trang_truoc() {
+        history.back();
+    }
+</script>
 <style>
+
     .toasang {
         margin: 20px;
         position: relative;
@@ -209,7 +211,6 @@
         z-index: 1;
         -webkit-transition: all .3s ease;
         -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
         -o-transition: all .3s ease;
         transition: all .3s ease;
     }
@@ -230,7 +231,6 @@
             z-index: -1;
             -webkit-transition: all .3s ease;
             -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
             -o-transition: all .3s ease;
             transition: all .3s ease;
         }

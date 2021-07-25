@@ -12,13 +12,17 @@ jQuery(document).ready(function ($) {
     $("#page").click(function () {
         $(".switcher-wrapper").removeClass("switcher-toggled")
     });
-     $('option').mousedown(function (e) {
+    //chọn nhiều size
+     /*$('option').mousedown(function (e) {
         e.preventDefault();
         $(this).toggleClass('selected');
 
         $(this).prop('selected', !$(this).prop('selected'));
         return false;
-    });
+    });*/
+
+
+    //của sidebar gio hang
     $(".btn-themvaogio").click(function () {
         var product_id = $(this).val();
         $.ajax({

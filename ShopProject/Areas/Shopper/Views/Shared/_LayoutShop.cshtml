@@ -18,12 +18,9 @@
     <script type="application/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
         function hideURLbar(){ window.scrollTo(0,1); } </script>
-
-
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="~/Areas/Shopper/Content/js/move-top.js"></script>
     <script type="text/javascript" src="~/Areas/Shopper/Content/js/easing.js"></script>
-
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
     <!--alertify-->
@@ -79,21 +76,19 @@
 <body id="style-6">
     <div id="page">
         <div class="header">
-            <div class="container" style="margin-bottom: 18px;">
-                <div class="logo">
-                    <h1><a href="/"><img src="~/Image/logoshop.png" /></a></h1>
-                </div>
-                <div class="head-t">
+            <div class="container" style="margin-bottom: 10px;">
+               
+                @*<div class="head-t">
                     <ul class="card">
                         <li><a href="@Url.Action("Index", "Login")"><i class="fa fa-arrow-right" aria-hidden="true"></i>Đăng nhập</a></li>
                         <li><a href="@Url.Action("DK", "Login")"><i class="fa fa-arrow-right" aria-hidden="true"></i>Đăng ký</a></li>
                     </ul>
-                </div>
-                <div class="header-ri">
-                    <ul class="social-top">
-                    </ul>
-                </div>
+                </div>*@
+
                 <div class="nav-top" style=" display: flex;">
+                    <div class="logo">
+                        <h1><a href="/"><img src="~/Image/logoshop.png" height="50" width="100"/></a></h1>
+                    </div>
                     <nav class="navbar navbar-default">
                         <div class="navbar-header nav_2">
                             <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
@@ -130,7 +125,7 @@
                                         }
                                     </ul>
                                 </li>
-                                <li><a href="#" class="hyper "><span>Phản hồi</span></a></li>
+                                
                             </ul>
                         </div>
                     </nav>
@@ -197,7 +192,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="copy-right">
-                    <p> &copy; 2021 SHKP, All Rights Reserved | Design by CHKP</p>
+                    <p> &copy; 2021 SHKP, All Rights Reserved | Design by C.H.K.P</p>
                 </div>
             </div>
         </div>
